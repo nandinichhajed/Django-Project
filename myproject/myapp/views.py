@@ -16,3 +16,9 @@ def intro(request,name,age):
         "age" : age,
     }
     return JsonResponse(mydictonary)
+
+def myfirstpage(request):
+    return render(request,'index.html')
+
+def mysecondpage(request):
+    return render(request,'mysecondpage.html')
