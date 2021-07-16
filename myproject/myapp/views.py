@@ -21,4 +21,21 @@ def myfirstpage(request):
     return render(request,'index.html')
 
 def mysecondpage(request):
-    return render(request,'mysecondpage.html')
+    return render(request,'second.html')
+
+def mythirdpage(request):
+    var = "Hello world"
+    greeting = "Hey how are you"
+    fruits = ["Apple", "Mango", "Banana"]
+    num1, num2 = 10, 7
+    ans = num1 > num2
+    mydictonary = {
+        "var" : var,
+        "msg" : greeting,
+        "myfruits" : fruits,
+        "num1" : num1,
+        "num2" : num2,
+        "ans" : ans,
+    }
+    return render(request,'third.html', context = mydictonary)
+
