@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse,JsonResponse
-
+from .forms import *
 
 def error_404_view(request,exception):
     return render(request,'404.html')
@@ -69,3 +69,37 @@ def myimagepage5(request,imagename):
         "var":var
     }
     return render(request,'image5.html',context=mydictionary)
+
+def myform(request):
+    return render(request,'myform.html')
+
+def submitmyform(request):
+    mydictionary = {
+        "var1" : request.POST['mytext'],
+        "var2" : request.POST['mytextarea'],
+        "method" : request.method
+    }
+    return JsonResponse(mydictionary)
+
+def myform2(request):
+    if request.method == "POST":
+        forms = FeedbackForm(request.POST)
+        if forms.is_valid():
+            title = request.POST['title']
+            subject = request.POST['subject']
+            print(title)
+            print(subject)
+            var = str("Form Submited" + str(request.method))
+            return HttpResponse(var)
+        else:
+            mydictionary = {
+                "form" : form,
+            }
+            return render(request,'myform2.html', context=mydictionary)
+
+    elif request.method == "GET":
+        form = FeedbackForm()    # FeedbackForm(None)
+        mydictionary = {
+            "form" : form,
+        }
+        return render(request,'myform2.html', context=mydictionary)
