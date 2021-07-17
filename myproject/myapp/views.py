@@ -1,5 +1,9 @@
 from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse,JsonResponse
+
+
+def error_404_view(request,exception):
+    return render(request,'404.html')
 
 def myfunctioncall(request):
     return HttpResponse("Hello World")
@@ -11,11 +15,11 @@ def add(request,a,b):
     return HttpResponse(a+b)
 
 def intro(request,name,age):
-    mydictonary = {
+    mydictionary = {
         "name" : name,
-        "age" : age,
+        "age" : age
     }
-    return JsonResponse(mydictonary)
+    return JsonResponse(mydictionary)
 
 def myfirstpage(request):
     return render(request,'index.html')
@@ -24,18 +28,44 @@ def mysecondpage(request):
     return render(request,'second.html')
 
 def mythirdpage(request):
-    var = "Hello world"
-    greeting = "Hey how are you"
-    fruits = ["Apple", "Mango", "Banana"]
-    num1, num2 = 10, 7
+    var = "hello world"
+    greeting = "hey how are you"
+    fruits = ["apple","mango","banana"]
+    num1 , num2 = 10 , 7
     ans = num1 > num2
-    mydictonary = {
+    #print(ans)
+    mydictionary = {
         "var" : var,
         "msg" : greeting,
         "myfruits" : fruits,
         "num1" : num1,
         "num2" : num2,
-        "ans" : ans,
+        "ans" : ans
     }
-    return render(request,'third.html', context = mydictonary)
+    return render(request,'third.html',context=mydictionary)
 
+def myimagepage(request):
+    return render(request,'image.html')
+
+
+def myimagepage2(request):
+    return render(request,'image2.html')
+
+def myimagepage3(request):
+    return render(request,'image3.html')
+
+def myimagepage4(request):
+    return render(request,'image4.html')
+
+def myimagepage5(request,imagename):
+    myimagename = str(imagename)
+    myimagename = myimagename.lower()
+    print(myimagename)
+    if myimagename == "django":
+        var=True
+    elif myimagename == "python":
+        var=False
+    mydictionary ={
+        "var":var
+    }
+    return render(request,'image5.html',context=mydictionary)
