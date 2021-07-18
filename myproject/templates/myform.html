@@ -7,7 +7,7 @@
         <div class="col-md-6" style="margin: 0 auto;">
             <form method="POST" action="{% url 'submitmyform' %}">
                 {% csrf_token %}
-                <div class="form-group">
+                <div class="form-group" style="margin-bottom: 20px;">
                     <label for="mytext">MyText</label>
                     <input type="text" id="mytext" name="mytext" class="form-control">
                 </div>
